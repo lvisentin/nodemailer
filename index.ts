@@ -14,13 +14,11 @@ app.post("/job", jsonParser, (req, res) => {
   const { name, email, cv, emailMessage } = req.body;
   MailController.sendEmail(name, email, cv, emailMessage).then(
     () =>
-      res.send({
-        code: 200,
+      res.status(200).send({
         message: "Email sent",
       }),
     () =>
-      res.send({
-        code: 500,
+      res.status(500).send({
         message: "Something wrong happened",
       })
   );
