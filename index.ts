@@ -13,15 +13,15 @@ app.listen(port, () => {
 app.post("/job", jsonParser, (req, res) => {
   const { name, email, cv, emailMessage } = req.body;
   MailController.sendEmail(name, email, cv, emailMessage).then(
-    () => res.send({
-      code: 200,
-      message: "Email sent",
-    }),
-    (err: any) => {
-      console.log(err);
-      return res.send({
-      code: 500,
-      message: "Something wrong happened",
-    })}
+    () =>
+      res.send({
+        code: 200,
+        message: "Email sent",
+      }),
+    () =>
+      res.send({
+        code: 500,
+        message: "Something wrong happened",
+      })
   );
 });
