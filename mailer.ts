@@ -1,3 +1,4 @@
+import 'dotenv/config';
 const nodemailer = require('nodemailer');
 
 class MailController {
@@ -8,18 +9,17 @@ class MailController {
       host: "smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: "ee9b5f87e0e764",
-        pass: "b650680d356642"
+        user: process.env.MAILTRAP_USER,
+        pass: process.env.MAILTRAP_PASS
       }
     });
     
   }
 
   public sendEmail(name: string, email: string, cv: string, emailMessage: string) {
-    console.log(this.transport.host)
     const message = {
       from: email,
-      to: 'lvise.batista@gmail.com',
+      to: process.env.MAILTRAP_TO,
       subject: `Job Application - ${name}`,
       text: emailMessage
     }

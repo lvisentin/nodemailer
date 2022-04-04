@@ -17,9 +17,11 @@ app.post("/job", jsonParser, (req, res) => {
       code: 200,
       message: "Email sent",
     }),
-    () => res.send({
+    (err: any) => {
+      console.log(err);
+      return res.send({
       code: 500,
       message: "Something wrong happened",
-    })
+    })}
   );
 });
